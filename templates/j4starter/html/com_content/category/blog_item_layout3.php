@@ -32,6 +32,7 @@ $isUnpublished = ($this->item->state == ContentComponent::CONDITION_UNPUBLISHED 
     $bild1m = "/uni/joomla/images/econa/fields/6/com_content_article/{$id}/{$name}_M.jpg";
     $bild1l = "/uni/joomla/images/econa/fields/6/com_content_article/{$id}/{$name}_L.jpg";
 
+
     
     // $bild1s = $this->item->jcfields[6]->fieldparams->get('sizes')->sizes0->src;
     // $bild1m = $this->item->jcfields[6]->fieldparams->get('sizes')->sizes1->src;
@@ -40,41 +41,28 @@ $isUnpublished = ($this->item->state == ContentComponent::CONDITION_UNPUBLISHED 
 ?>
 <!-- <img src="<?php echo $bild1s ?>" /> -->
 
-<script>
-    let bool = true;
-    const test = (id) => {
-        console.log(id)
-        bool = !bool
-        if(!bool){
-            document.querySelector(`.text${id}`).style.display = 'none'
-            document.querySelector(`.long${id}`).style.display = 'block'
-        }else{
-            document.querySelector(`.text${id}`).style.display = 'block'
-            document.querySelector(`.long${id}`).style.display = 'none'
-        }
-    }
-</script>
 
+<pre>
+    <!-- <?php print_r($this->item->jcfields[4]->rawvalue) ?> -->
+</pre>
 
 <article>
+    <h2 <?php echo (strlen($this->item->title) < 20) ? 'class="big"' : 'class="medium"' ?>><?php echo $this->item->title; ?></h2>
     <!-- <pre><?php print_r($this->item) ?> </pre> -->
 
-    <h2 <?php echo (strlen($this->item->title) < 20) ? 'class="big"' : 'class="small"' ?>><?php echo $this->item->title; ?></h2>
+    <div class="layout2">
 
-    <?php if (isset($bild1s)) : ?>
-        <figure>
-            <picture>
-                <source srcset="<?php echo $bild1l ?>" media="(min-width: 90em)">
-                <source srcset="<?php echo $bild1m ?>" media="(min-width: 64em)">
-                <img src="<?php echo $bild1s ?>" />
-            </picture>
-            <figcaption>Yo Bildtitle</figcaption>
-        </figure>
-    <?php endif; ?>
+    
+        <?php if (isset($this->item->jcfields[2]->rawvalue)) : ?>
+            <p class="intro text<?php print_r($this->item->id) ?>"><?php print_r($this->item->jcfields[2]->rawvalue) ?></p>
+            <p class="full long<?php print_r($this->item->id) ?>"><?php print_r($this->item->jcfields[3]->rawvalue) ?></p>
+        <?php endif; ?>
 
-    <?php if (isset($this->item->jcfields[2]->rawvalue)) : ?>
-        <p class="teaser_2col intro text<?php print_r($this->item->id) ?>"><?php print_r($this->item->jcfields[2]->rawvalue) ?></p>
-        <p class="teaser_2col full long<?php print_r($this->item->id) ?>"><?php print_r($this->item->jcfields[3]->rawvalue) ?></p>
-    <?php endif; ?>
-    <button onclick="test(<?php print_r($this->item->id) ?>)">Click me</button>
+    <div class="marginLeft">
+    <?php if (isset($this->item->jcfields[4]->rawvalue)) : ?>
+    <iframe src="https://player.vimeo.com/video/<?php print_r($this->item->jcfields[4]->rawvalue) ?>?h=8272103f6e" width="700" height="350" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>    <?php endif; ?>
+
+    </div>
+
+    </div>
 </article>
