@@ -1,0 +1,9 @@
+.layout_blog{
+    max-width: 60rem;
+    margin: auto auto;
+    background-color: red;
+}
+.layout_blog article .teaser_2col {
+    column-count: 2;
+    color: red;
+}
